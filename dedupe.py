@@ -3,8 +3,12 @@
 import openpyxl
 import pprint
 import os
+import sys
 
 print('Opening workbook')
+
+dedupe_arg = sys.argv[1]
+
 
 os.chdir('../')
 wb = openpyxl.load_workbook('example.xlsx')
@@ -18,6 +22,8 @@ for i in range(1, sheet.max_column + 1):
 
 print('Headers: ', header_values)
 print('Row Keys: ', row_keys)
+
+filter_col = header_values[int(dedupe_arg)]
 
 for key in row_keys:
     row_dict = {}
@@ -39,8 +45,8 @@ unique_values = []
 # deduped_document = [d for d in document if d['ID'] in unique_values]
 
 for d in document:
-    if d['ID'] not in unique_values:
-        unique_values.append(d['ID'])
+    if d[filter_col] not in unique_values:
+        unique_values.append(d[filter_col])
         deduped_document.append(d)
 
 
