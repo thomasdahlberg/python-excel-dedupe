@@ -7,11 +7,12 @@ import sys
 
 print('Opening workbook')
 
-dedupe_arg = sys.argv[1]
+file_arg = sys.argv[1]
+dedupe_arg = sys.argv[2]
 
 
 os.chdir('../')
-wb = openpyxl.load_workbook('example.xlsx')
+wb = openpyxl.load_workbook(f"{file_arg}.xlsx")
 sheet = wb['sheet1']
 header_values = []
 row_keys = range(3,sheet.max_row)
@@ -62,7 +63,6 @@ def sort_by(e):
 
 # print('Document: ', document)
 
-# wb.remove(wb['Sorted'])
 
 # wb.create_sheet(index=1, title='Sorted')
 # sorted_sheet = wb['Sorted']
@@ -72,6 +72,9 @@ def sort_by(e):
 #     sorted_sheet.append(list(document[i].values()))
 
 
+# if sheet_exists:
+#     wb.remove(wb['Deduped'])
+
 wb.create_sheet(index=1, title='Deduped')
 deduped_sheet = wb['Deduped']
 deduped_sheet.append(header_values)
@@ -79,6 +82,6 @@ deduped_sheet.append(header_values)
 for i in range(1, len(deduped_document)):
     deduped_sheet.append(list(deduped_document[i].values()))
 
-wb.save(filename='example.xlsx')
+wb.save(filename=f"{file_arg}.xlsx")
 
 print('Sheetnames: ', wb.sheetnames)
