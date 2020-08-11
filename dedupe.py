@@ -11,7 +11,7 @@ file_arg = sys.argv[1]
 dedupe_arg = sys.argv[2]
 
 
-os.chdir('../')
+os.chdir('./workdocs')
 wb = openpyxl.load_workbook(f"{file_arg}.xlsx")
 sheet = wb['sheet1']
 header_values = []
@@ -51,7 +51,6 @@ for d in document:
         deduped_document.append(d)
 
 
-print('DEDUPED?: ', deduped_document)
 # print('Original length: ', len(document))
 print('Deduped length: ', len(deduped_document))
 
@@ -70,10 +69,10 @@ def sort_by(e):
 
 # for i in range(1, len(document)):
 #     sorted_sheet.append(list(document[i].values()))
+sheet_exists = wb['Deduped']
 
-
-# if sheet_exists:
-#     wb.remove(wb['Deduped'])
+if sheet_exists:
+    wb.remove(wb['Deduped'])
 
 wb.create_sheet(index=1, title='Deduped')
 deduped_sheet = wb['Deduped']
