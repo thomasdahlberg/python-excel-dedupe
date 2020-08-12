@@ -8,6 +8,9 @@ print('Opening workbook')
 file_arg = sys.argv[1]
 dedupe_arg = sys.argv[2]
 sort_arg = sys.argv[3]
+# test_arg = sys.argv[4]
+
+dedupe_criteria = dedupe_arg.split(',')
 
 
 os.chdir('./workdocs')
@@ -28,7 +31,11 @@ for i in range(1, sheet.max_column + 1):
 print('Headers: ', header_values)
 print('Row Keys: ', row_keys)
 
-filter_col = header_values[int(dedupe_arg)]
+filter_cols = []
+for i in range(0, len(dedupe_criteria)):
+    filter_cols.append(header_values[int(dedupe_criteria[i])])
+print('Dedupe Criteria: ', filter_cols)
+
 sort_col = header_values[int(sort_arg)]
 
 # Deduplicating
@@ -40,8 +47,11 @@ for key in row_keys:
     document.append(row_dict)
 
 for d in document:
-    if d[filter_col] not in unique_values:
-        unique_values.append(d[filter_col])
+    criteria = []
+    for i in range(0,len(filter_cols)):
+        criteria.append(d[filter_cols[i]])
+    if criteria not in unique_values:
+        unique_values.append(criteria)
         deduped_document.append(d)
 
 
