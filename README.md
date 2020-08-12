@@ -24,13 +24,13 @@ In the terminal call 'dedupe.py' in python like so:
 
 Please note:
 - <file_name> is the name of the spreadsheet file without its file extension identifier ('.xlsx').
-- <1st_arg> is the place holder for the dedupe column(s) criteria. In other words the program will only keep rows with unique values in the specified column(s). You may list one integer to specify the dedupe column or any number of integers separated by a comma, no spaces.
+- <1st_arg> is the place holder for the dedupe column(s) criteria. In other words the program will only keep rows with unique values in the specified column(s). You may list one integer to specify the dedupe column or any number of integers separated by a comma, no spaces to deduplicate based on multiple column criteria.
 - <2nd arg> is a place holder for the sort column criteria. It accepts one integer value.
 - Both arguments are zero-indexed.
 
 ## Example Call of 'dedupe.py'
 
-In the example below the user is calling 'dedupe.py' on spreadsheet 'example' to deduplicate rows based on unique values in column 0, 1 and 4 and sort the resulting rows by column 2.
+In the example below the user is calling 'dedupe.py' on spreadsheet 'example' to deduplicate rows based on unique values in columns 0, 1 and 4 and sort the resulting rows by column 2.
 
 >$python3 dedupe.py example 0,1,4 2
 
