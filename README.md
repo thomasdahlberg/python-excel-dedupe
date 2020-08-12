@@ -12,12 +12,25 @@ This is a CLI program meant to be called in a Python runtime environment in the 
 
 ## Getting Started
 
--Download the program folder from github and place in a working directory such as 'Desktop.'
--Add the Excel document that you want to manipulate to the 'Workdocs' folder.
--Open terminal.
+- Download the program folder from github and place in a working directory such as 'Desktop.'
+- Add the Excel document that you want to manipulate to the 'Workdocs' folder.
+- Open terminal and navigate to the program's directory.
 
 ## Calling the Program
 
 In the terminal call 'dedupe.py' in python like so:
 
->$python3 dedupe.py 1st_arg 2nd_arg
+>$python3 dedupe.py <filename> <1st_arg> <2nd_arg>
+
+Please note:
+- <filename> is the name of the spreadsheet file without its file extension identifier ('.xlsx').
+- <1st_arg> is the place holder for the dedupe column(s) criteria. In other words the program will only keep rows with unique values in the specified column(s). You may list one integer to specify the dedupe column or any number of integers separated by a comma, no spaces.
+- <2nd arg> is a place holder for the sort column criteria. It accepts one integer value.
+- Both arguments are zero-indexed.
+
+## Example Call of 'dedupe.py'
+
+In the example below the user is calling 'dedupe.py' on spreadsheet 'example' to deduplicate rows based on unique values in column 0, 1 and 4 and sort the resulting rows by column 2.
+
+>$python3 dedupe.py example 0,1,4 2
+
