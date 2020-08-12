@@ -20,10 +20,10 @@ This is a CLI program meant to be called in a Python runtime environment in the 
 
 In the terminal call 'dedupe.py' in python like so:
 
->$python3 dedupe.py <filename> <1st_arg> <2nd_arg>
+>$python3 dedupe.py <file_name> <1st_arg> <2nd_arg>
 
 Please note:
-- <filename> is the name of the spreadsheet file without its file extension identifier ('.xlsx').
+- <file_name> is the name of the spreadsheet file without its file extension identifier ('.xlsx').
 - <1st_arg> is the place holder for the dedupe column(s) criteria. In other words the program will only keep rows with unique values in the specified column(s). You may list one integer to specify the dedupe column or any number of integers separated by a comma, no spaces.
 - <2nd arg> is a place holder for the sort column criteria. It accepts one integer value.
 - Both arguments are zero-indexed.
