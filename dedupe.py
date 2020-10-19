@@ -1,7 +1,12 @@
-
 import openpyxl
 import os
 import sys
+
+header_values = []
+document = []
+deduped_document = []
+unique_values = []
+filter_cols = []
 
 def main():
     if len(sys.argv) != 4:
@@ -13,23 +18,19 @@ def main():
     file_arg = sys.argv[1]
     dedupe_arg = sys.argv[2]
     sort_arg = sys.argv[3]
-
     dedupe_criteria = dedupe_arg.split(',')
-
 
     os.chdir('./workdocs')
     wb = openpyxl.load_workbook(f"{file_arg}.xlsx")
+
     print("Sheets: ", end="")
     for i in range(len(wb.sheetnames)):
         print(f"{i+1}) {wb.sheetnames[i]}   ", end="")
     print("")
     get_sheet = input("Pick sheet number: ")
-    sheet = wb[wb.sheetnames[int(get_sheet)]]
-    header_values = []
+    sheet = wb[wb.sheetnames[int(get_sheet)-1]]
+
     row_keys = range(2,sheet.max_row)
-    document = []
-    deduped_document = []
-    unique_values = []
 
     for i in range(1, sheet.max_column + 1):
         header_values.append(sheet.cell(row=1, column=i).value)
@@ -37,7 +38,6 @@ def main():
     print('Headers: ', header_values)
     print('Row Keys: ', row_keys)
 
-    filter_cols = []
     for i in range(0, len(dedupe_criteria)):
         filter_cols.append(header_values[int(dedupe_criteria[i])])
     print('Dedupe Criteria: ', filter_cols)
@@ -70,8 +70,8 @@ def main():
     if 'Deduped' in wb.sheetnames:
         wb.remove(wb['Deduped'])
 
-    wb.create_sheet(index=1, title='Deduped')
-    deduped_sheet = wb['Deduped']
+    wb.create_sheet(index=1, title=f"{sheet}-deduped")
+    deduped_sheet = wb[f"{sheet}-deduped"]
     deduped_sheet.append(header_values)
 
     for i in range(1, len(deduped_document)):
