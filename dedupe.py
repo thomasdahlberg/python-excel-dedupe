@@ -11,12 +11,6 @@ filter_cols = []
 def main():
     wb = get_excel_doc()
     sheet = get_sheet(wb)
-    print(sheet.title)
-
-    # dedupe_arg = sys.argv[2]
-    # sort_arg = sys.argv[3]
-    # dedupe_criteria = dedupe_arg.split(',')
-    
     row_keys = range(2,sheet.max_row)
 
     for i in range(1, sheet.max_column + 1):
