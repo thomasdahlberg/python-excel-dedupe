@@ -2,7 +2,7 @@
 
 This program is the start of a suite of simple python programs to help everyday users of spreadsheets to automate some of their tasks.
 
-I'm starting with a deduplication program because often I know I need to dedupe a data set before even opening the file and often it's the only work I have to do with that file.
+I'm starting with a deduplication/sort program because often I know I need to dedupe/sort a data set before even opening the file and often it's the only work I have to do with that file.
 
 Booting up Excel, as powerful as it is, often wastes a fair amount of time. In the pursuit of efficiency, here goes!
 
