@@ -5,7 +5,7 @@ import sys
 header_values = []
 document = []
 deduped_document = []
-unique_values = []
+unique_values = {}
 filter_cols = []
 
 def main():
@@ -62,11 +62,11 @@ def main():
         new_doc = document
     if len(filter_cols) > 0:
         for d in new_doc:
-            criteria = []
+            criteria = ""
             for i in range(0,len(filter_cols)):
-                criteria.append(d[filter_cols[i]])
+                criteria += str(d[filter_cols[i]])
             if criteria not in unique_values:
-                unique_values.append(criteria)
+                unique_values[criteria] = True
                 deduped_document.append(d)
         print('Original length: ', len(new_doc))
         print('Deduped length: ', len(deduped_document))
